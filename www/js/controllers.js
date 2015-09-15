@@ -2,34 +2,66 @@ angular.module('starter.controllers', [])
 
 .controller('DashCtrl', function($scope) {})
 
-  .controller('ReportsCtrl', function($scope) {
+  .controller('ReportsCtrl', function($scope, $http) {
 
-    console.log('I am inside Reports controller');
+    console.log('I am in reports controller');
 
+
+    $http.get('http://api.rwlabs.org/v1/reports').then(function(resp) {
+
+      // For JSON responses, resp.data contains the result
+      $scope.reports = resp.data.data;
+      //console.log('Success', $scope.reports);
+    }, function(err) {
+      console.error('ERR', err);
+      // err.status will contain the status code
+    })
+    //$scope.reports = Reports.all();
+
+})
+
+.controller('DisastersCtrl', function($scope, $http, $rootScope) {
+
+    console.log('I am in disasters controller');
+
+    //$rootScope.$on('$stateChangeSuccess', function(event, toState){
+    //  if(toState.url == '/disasters') {
+    //
+    //  }
+    //})
+
+    $http.get('http://api.rwlabs.org/v1/disasters').then(function(resp) {
+
+    // For JSON responses, resp.data contains the result
+    $scope.disasters = resp.data.data;
+    //console.log('Success', $scope.disasters);
+  }, function(err) {
+      console.error('ERR', err);
+      // err.status will contain the status code
+    })
   })
 
-.controller('ChatsCtrl', function($scope, Chats) {
-  // With the new view caching in Ionic, Controllers are only called
-  // when they are recreated or on app start, instead of every page change.
-  // To listen for when this page is active (for example, to refresh data),
-  // listen for the $ionicView.enter event:
-  //
-  //$scope.$on('$ionicView.enter', function(e) {
-  //});
+  .controller('JobsCtrl', function($scope, $http, $rootScope) {
 
-  $scope.chats = Chats.all();
-  $scope.remove = function(chat) {
-    Chats.remove(chat);
-  };
-})
+    console.log('I am in jobs controller');
+
+    //$rootScope.$on('$stateChangeSuccess', function(event, toState){
+    //  if(toState.url == '/disasters') {
+    //
+    //  }
+    //})
+
+    $http.get('http://api.rwlabs.org/v1/jobs').then(function(resp) {
+
+      // For JSON responses, resp.data contains the result
+      $scope.jobs = resp.data.data;
+      //console.log('Success', $scope.disasters);
+    }, function(err) {
+      console.error('ERR', err);
+      // err.status will contain the status code
+    })
+  });
 
 
-.controller('ChatDetailCtrl', function($scope, $stateParams, Chats) {
-  $scope.chat = Chats.get($stateParams.chatId);
-})
 
-.controller('AccountCtrl', function($scope) {
-  $scope.settings = {
-    enableFriends: true
-  };
-});
+

@@ -1,0 +1,10 @@
+<ion-view view-title="Jobs">
+  <ion-content>
+    <ion-list >
+      <ion-item class="item-icon-left item-text-wrap" ng-repeat="job in jobs" type="" href="#/tab/disasters/{{job.id}}">
+        <i class="icon ion-briefcase"></i>
+        <h2>{{job.fields.title}}</h2>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>

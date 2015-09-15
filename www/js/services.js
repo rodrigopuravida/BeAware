@@ -1,5 +1,42 @@
 angular.module('starter.services', [])
 
+
+
+  .factory('Reports', function() {
+    // Might use a resource here that returns a JSON array
+
+
+
+    // Some fake testing data
+    var reports = [{
+      id: 0,
+      title: 'Report1'
+
+    }, {
+      id: 1,
+      title: 'Report2'
+
+    }];
+
+    return {
+      all: function() {
+        return reports;
+      },
+      remove: function(report) {
+        reports.splice(reports.indexOf(report), 1);
+      },
+      get: function(reportId) {
+        for (var i = 0; i < reports.length; i++) {
+          if (reports[i].id === parseInt(reportId)) {
+            return reports[i];
+          }
+        }
+        return null;
+      }
+    };
+  })
+
+
 .factory('Chats', function() {
   // Might use a resource here that returns a JSON array
 

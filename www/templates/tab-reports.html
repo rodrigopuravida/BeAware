@@ -1,7 +1,9 @@
 <ion-view view-title="Reports">
   <ion-content>
-    <ion-list>
-      <p>I am inside reports page</p>
+    <ion-list >
+      <ion-item class="item-icon-left item-text-wrap" ng-repeat="report in reports" type="" href="#/tab/reports/{{report.id}}">
+        <i class="icon ion-printer"></i>
+        <h2>{{report.fields.title}}</h2>
       </ion-item>
     </ion-list>
   </ion-content>
