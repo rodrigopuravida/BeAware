@@ -70,6 +70,17 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
           controller: 'JobsCtrl'
         }
       }
+    })
+
+    .state('tab.training', {
+      url: '/training',
+      cache: false,
+      views: {
+        'tab-training': {
+          templateUrl: 'templates/tab-training.html',
+          controller: 'TrainingCtrl'
+        }
+      }
     });
 
 

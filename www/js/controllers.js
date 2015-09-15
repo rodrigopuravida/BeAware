@@ -60,7 +60,22 @@ angular.module('starter.controllers', [])
       console.error('ERR', err);
       // err.status will contain the status code
     })
-  });
+  })
+
+
+  .controller('TrainingCtrl', function($scope, $http, $rootScope) {
+    console.log('I am in training controller');
+
+$http.get('http://api.rwlabs.org/v1/training').then(function(resp) {
+
+  // For JSON responses, resp.data contains the result
+  $scope.trainings = resp.data.data;
+  //console.log('Success', $scope.disasters);
+}, function(err) {
+  console.error('ERR', err);
+  // err.status will contain the status code
+})
+});
 
 
 
