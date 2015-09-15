@@ -96,6 +96,17 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       }
     })
 
+    .state('tab.job-detail', {
+      url: '/jobs/:jobId',
+      cache: false,
+      views: {
+        'tab-jobs': {
+          templateUrl: 'templates/job-detail.html',
+          controller: 'JobDetailCtrl'
+        }
+      }
+    })
+
     .state('tab.training', {
       url: '/training',
       cache: false,

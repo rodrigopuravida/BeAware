@@ -94,8 +94,24 @@ angular.module('starter.controllers', [])
     })
   })
 
+  .controller('JobDetailCtrl', function($scope, $stateParams, $http) {
+    console.log('I am inside job detail controller');
+    var jobId = $stateParams.jobId;
+    console.log(jobId);
+    $http.get('http://api.rwlabs.org/v1/jobs/' + jobId).then(function (resp) {
 
-  .controller('TrainingCtrl', function($scope, $http, $rootScope) {
+      // For JSON responses, resp.data contains the result
+      $scope.job = resp.data.data;
+      console.log('Success', $scope.job);
+    }, function (err) {
+      console.error('ERR', err);
+      // err.status will contain the status code
+    })
+  })
+
+
+
+      .controller('TrainingCtrl', function($scope, $http, $rootScope) {
     console.log('I am in training controller but in xcode');
 
 $http.get('http://api.rwlabs.org/v1/training?limit=40').then(function(resp) {
