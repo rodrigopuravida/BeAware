@@ -1,9 +1,10 @@
-<ion-view view-title="Disasters">
+<ion-view view-title="Be Aware Disasters">
   <ion-content>
     <ion-list >
       <ion-item class="item-icon-left item-text-wrap" ng-repeat="disaster in disasters" type="" href="#/tab/disasters/{{disaster.id}}">
         <i class="icon ion-heart-broken"></i>
         <h2>{{disaster.fields.name}}</h2>
+        <h2>{{disaster.id}}</h2>
       </ion-item>
     </ion-list>
   </ion-content>

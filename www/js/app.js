@@ -34,6 +34,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
   // setup an abstract state for the tabs directive
     .state('tab', {
     url: '/tab',
+      cache: false,
     abstract: true,
     templateUrl: 'templates/tabs.html'
   })
@@ -42,10 +43,22 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
   //
     .state('tab.reports', {
       url: '/reports',
+      cache: false,
       views: {
         'tab-reports': {
           templateUrl: 'templates/tab-reports.html',
           controller: 'ReportsCtrl'
+        }
+      }
+    })
+
+    .state('tab.report-detail', {
+      url: '/reports/:reportId',
+      cache: false,
+      views: {
+        'tab-reports': {
+          templateUrl: 'templates/report-detail.html',
+          controller: 'ReportDetailCtrl'
         }
       }
     })
@@ -57,6 +70,17 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
         'tab-disasters': {
           templateUrl: 'templates/tab-disasters.html',
           controller: 'DisastersCtrl'
+        }
+      }
+    })
+
+    .state('tab.disaster-detail', {
+      url: '/disasters/:disasterId',
+      cache: false,
+      views: {
+        'tab-disasters': {
+          templateUrl: 'templates/disaster-detail.html',
+          controller: 'DisasterDetailCtrl'
         }
       }
     })
@@ -82,11 +106,6 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
         }
       }
     });
-
-
-
-
-
 
 
 
