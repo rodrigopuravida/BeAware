@@ -112,7 +112,7 @@ angular.module('starter.controllers', [])
 
 
       .controller('TrainingCtrl', function($scope, $http, $rootScope) {
-    console.log('I am in training controller but in xcode');
+    console.log('I am in training controller');
 
 $http.get('http://api.rwlabs.org/v1/training?limit=40').then(function(resp) {
 
@@ -123,7 +123,22 @@ $http.get('http://api.rwlabs.org/v1/training?limit=40').then(function(resp) {
   console.error('ERR', err);
   // err.status will contain the status code
 })
-});
+})
+
+  .controller('TrainingDetailCtrl', function($scope, $stateParams, $http) {
+    console.log('I am inside training detail controller');
+    var trainingId = $stateParams.trainingId;
+    console.log(trainingId);
+    $http.get('http://api.rwlabs.org/v1/training/' + trainingId).then(function (resp) {
+
+      // For JSON responses, resp.data contains the result
+      $scope.training = resp.data.data;
+      console.log('Success', $scope.training);
+    }, function (err) {
+      console.error('ERR', err);
+      // err.status will contain the status code
+    })
+  });
 
 
 

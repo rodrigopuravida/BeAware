@@ -116,6 +116,17 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
           controller: 'TrainingCtrl'
         }
       }
+    })
+
+    .state('tab.training-detail', {
+      url: '/training/:trainingId',
+      cache: false,
+      views: {
+        'tab-training': {
+          templateUrl: 'templates/training-detail.html',
+          controller: 'TrainingDetailCtrl'
+        }
+      }
     });
 
 
