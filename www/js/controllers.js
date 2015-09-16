@@ -2,25 +2,60 @@ angular.module('starter.controllers', [])
 
 .controller('DashCtrl', function($scope) {})
 
-  .controller('ReportsCtrl', function($scope, $http) {
+  .controller('DonationsCtrl', function($scope) {
+    //donation func here
+    console.log('I am at donations controller');
+
+
+  })
+
+
+  .controller('ReportsCtrl', function($scope, $http, $ionicLoading) {
 
     console.log('I am in reports controller');
 
+    $scope.show = function() {
+      $ionicLoading.show({
+        template: '<p>Loading...</p><ion-spinner></ion-spinner>'
+      });
+    };
+
+    $scope.hide = function(){
+      $ionicLoading.hide();
+    };
+
+    $scope.show($ionicLoading);
 
     $http.get('http://api.rwlabs.org/v1/reports?limit=30').then(function(resp) {
 
+
       // For JSON responses, resp.data contains the result
       $scope.reports = resp.data.data;
+      $scope.hide($ionicLoading);
       //console.log('Success', $scope.reports);
     }, function(err) {
       console.error('ERR', err);
       // err.status will contain the status code
     })
+
     //$scope.reports = Reports.all();
 
 })
 
-  .controller('ReportDetailCtrl', function($scope, $stateParams, $http) {
+  .controller('ReportDetailCtrl', function($scope, $stateParams, $http, $ionicLoading) {
+
+    $scope.show = function() {
+      $ionicLoading.show({
+        template: '<p>Loading...</p><ion-spinner></ion-spinner>'
+      });
+    };
+
+    $scope.hide = function(){
+      $ionicLoading.hide();
+    };
+
+    $scope.show($ionicLoading);
+
     var reportId  = $stateParams.reportId;
     console.log('I am inside Report Details controller');
     console.log(reportId);
@@ -28,6 +63,7 @@ angular.module('starter.controllers', [])
 
       // For JSON responses, resp.data contains the result
       $scope.report = resp.data.data;
+      $scope.hide($ionicLoading);
       //console.log('Success', $scope.report);
     }, function(err) {
       console.error('ERR', err);
@@ -139,6 +175,7 @@ $http.get('http://api.rwlabs.org/v1/training?limit=40').then(function(resp) {
       // err.status will contain the status code
     })
   });
+
 
 
 

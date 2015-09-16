@@ -7,9 +7,19 @@
 <ion-view view-title="{{report[0].fields.title}}">
   <ion-content class="padding">
     <!--<img ng-src="{{report[0].fields.file[0].preview.url}}" style="width: 64px; height: 64px" >-->
-    <h3>
-      {{report[0].fields.body}}
-    </h3>
+
+    <div class="card">
+      <div class="item item-text-wrap item-divider">
+        <b>{{report[0].fields.primary_country.name}} - {{report[0].fields.title}}<b>
+      </div>
+      <div class="item item-text-wrap">
+        {{report[0].fields.body}}
+      </div>
+      <div class="item item-divider">
+        <img src={{report[0].fields.file[0].preview.url}}>
+      </div>
+    </div>
+
   </ion-content>
 </ion-view>
 

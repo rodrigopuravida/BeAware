@@ -7,9 +7,17 @@
 <ion-view view-title="{{training[0].fields.title}}">
   <ion-content class="padding">
     <!--<img ng-src="{{report[0].fields.file[0].preview.url}}" style="width: 64px; height: 64px" >-->
-    <h3>
-      {{training[0].fields.body}}
 
-    </h3>
+    <div class="card">
+      <div class="item item-text-wrap item-divider">
+        <b>{{training[0].fields.country[0].name}} - {{training[0].fields.title}}<b>
+      </div>
+      <div class="item item-text-wrap">
+        {{training[0].fields.body}}
+      </div>
+      <div class="item item-divider">
+        {{training[0].fields.city[0].name}}
+      </div>
+    </div>
   </ion-content>
 </ion-view>
