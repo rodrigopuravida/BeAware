@@ -34,7 +34,7 @@ angular.module('starter', ['ionic', 'firebase', 'starter.controllers', 'starter.
   // setup an abstract state for the tabs directive
     .state('tab', {
     url: '/tab',
-      cache: false,
+      //cache: false,
     abstract: true,
     templateUrl: 'templates/tabs.html'
   })
@@ -43,7 +43,7 @@ angular.module('starter', ['ionic', 'firebase', 'starter.controllers', 'starter.
   //
     .state('tab.reports', {
       url: '/reports',
-      cache: false,
+      //cache: false,
       views: {
         'tab-reports': {
           templateUrl: 'templates/tab-reports.html',
@@ -65,7 +65,7 @@ angular.module('starter', ['ionic', 'firebase', 'starter.controllers', 'starter.
 
     .state('tab.disasters', {
       url: '/disasters',
-      cache: false,
+      //cache: false,
       views: {
         'tab-disasters': {
           templateUrl: 'templates/tab-disasters.html',
@@ -87,7 +87,7 @@ angular.module('starter', ['ionic', 'firebase', 'starter.controllers', 'starter.
 
     .state('tab.jobs', {
       url: '/jobs',
-      cache: false,
+      //cache: false,
       views: {
         'tab-jobs': {
           templateUrl: 'templates/tab-jobs.html',
@@ -109,7 +109,7 @@ angular.module('starter', ['ionic', 'firebase', 'starter.controllers', 'starter.
 
     .state('tab.training', {
       url: '/training',
-      cache: false,
+      //cache: false,
       views: {
         'tab-training': {
           templateUrl: 'templates/tab-training.html',
@@ -131,7 +131,7 @@ angular.module('starter', ['ionic', 'firebase', 'starter.controllers', 'starter.
 
     .state('tab.donations', {
       url: '/donations',
-      cache: false,
+      //cache: false,
       views: {
         'tab-donations': {
           templateUrl: 'templates/tab-donations.html',
