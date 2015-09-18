@@ -4,7 +4,7 @@
   The FriendsCtrl pulls data from the Friends service (service.js)
   The Friends service returns an array of friend data
 -->
-<ion-view view-title="{{report[0].fields.title}}">
+<ion-view view-title="Be Aware Report Details">
   <ion-content class="padding">
     <!--<img ng-src="{{report[0].fields.file[0].preview.url}}" style="width: 64px; height: 64px" >-->
 
@@ -16,7 +16,11 @@
         {{report[0].fields.body}}
       </div>
       <div class="item item-divider">
-        <img src={{report[0].fields.file[0].preview.url}}>
+        <div class="row">
+          <div class="col"><img src={{report[0].fields.file[0].preview.url}}></div>
+
+        </div>
+
       </div>
     </div>
 

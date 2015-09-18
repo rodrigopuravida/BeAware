@@ -22,3 +22,12 @@ angular.module('starter.services', [])
     };
 
   })
+
+
+.factory('Coordinates', function() {
+
+    coordinates = {};
+    coordinates.lat = '';
+    coordinates.long = '';
+    return coordinates;
+  });

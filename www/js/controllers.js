@@ -1,5 +1,6 @@
 angular.module('starter.controllers', [])
 
+
 .controller('DashCtrl', function($scope) {})
 
   .controller('DonationsCtrl', function($scope) {
@@ -71,6 +72,7 @@ angular.module('starter.controllers', [])
     // For JSON responses, resp.data contains the result
     $scope.disasters = resp.data.data;
       Loading.hide();
+
     //console.log('Success', $scope.disasters);
   }, function(err) {
       console.error('ERR', err);
@@ -78,7 +80,8 @@ angular.module('starter.controllers', [])
     })
   })
 
-  .controller('DisasterDetailCtrl', function($scope, $stateParams, $http, Loading) {
+  .controller('DisasterDetailCtrl', function($scope, $stateParams, $http, Loading, Coordinates) {
+    $scope.coordData = Coordinates;
     console.log('I am inside disaster detail controller');
     Loading.show();
     var disasterId  = $stateParams.disasterId;
@@ -87,6 +90,16 @@ angular.module('starter.controllers', [])
 
       // For JSON responses, resp.data contains the result
       $scope.disaster = resp.data.data;
+
+      //this console shows lat - [1] - long i [0]
+      console.log(resp.data.data[0].fields.primary_country.location[1]);
+      $scope.coordData.lat = resp.data.data[0].fields.primary_country.location[1];
+      $scope.coordData.long = resp.data.data[0].fields.primary_country.location[0];
+      console.log('At disasater detail setting coords');
+      console.log($scope.coordData);
+      console.log('now logging full coordinates object at disaster detail controller');
+      console.log(Coordinates);
+
       Loading.hide();
       console.log('Success', $scope.disaster);
     }, function(err) {
@@ -95,6 +108,7 @@ angular.module('starter.controllers', [])
     })
 
   })
+
 
   .controller('JobsCtrl', function($scope, $http, $rootScope, Loading) {
 
@@ -164,12 +178,56 @@ $http.get('http://api.rwlabs.org/v1/training?limit=40').then(function(resp) {
       // For JSON responses, resp.data contains the result
       $scope.training = resp.data.data;
       Loading.hide();
-      console.log('Success', $scope.training);
+      //console.log('Success', $scope.training);
     }, function (err) {
       console.error('ERR', err);
       // err.status will contain the status code
     })
-  });
+  })
+
+  .controller('MapController', function($scope, $ionicLoading, $compile, Coordinates) {
+    $scope.initialize = function() {
+
+      $scope.coordData = Coordinates;
+      console.log('My coords in map controller');
+      console.log('lat');
+      console.log($scope.coordData.lat);
+      console.log('long');
+      console.log($scope.coordData.long);
+
+      console.log("Inside Map controller");
+      var myLatlng = new google.maps.LatLng($scope.coordData.lat, $scope.coordData.long);
+
+      var mapOptions = {
+        center: myLatlng,
+        zoom: 6,
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+      };
+      var map = new google.maps.Map(document.getElementById("map"),
+        mapOptions);
+      console.log('My map object');
+      console.log(map);
+
+
+
+      var marker = new google.maps.Marker({
+        position: myLatlng,
+        map: map,
+        title: 'Disaster Area)'
+      });
+
+      google.maps.event.addListener(marker, 'click', function() {
+        infowindow.open(map,marker);
+      });
+
+      $scope.map = map;
+    }
+    //google.maps.event.addDomListener(window, 'load', initialize);
+
+
+  })
+
+
 
 
 

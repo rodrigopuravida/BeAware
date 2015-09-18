@@ -138,7 +138,18 @@ angular.module('starter', ['ionic', 'firebase', 'starter.controllers', 'starter.
           controller: 'DonationsCtrl'
         }
       }
-    });
+    })
+
+    .state('tab.map', {
+      url: '/map',
+      cache: false,
+      views: {
+        'tab-map': {
+          templateUrl: 'templates/tab-map.html',
+          controller: 'MapController'
+        }
+      }
+    })
 
 
 
