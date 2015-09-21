@@ -15,14 +15,14 @@ angular.module('starter.controllers', [])
 
     console.log('I am in reports controller');
 
-    //Loading.show();
+    Loading.show();
 
     $http.get('http://api.rwlabs.org/v1/reports?limit=30').then(function(resp) {
 
 
       // For JSON responses, resp.data contains the result
       $scope.reports = resp.data.data;
-      //Loading.hide();
+      Loading.hide();
 
       //console.log('Success', $scope.reports);
     }, function(err) {
@@ -82,9 +82,6 @@ angular.module('starter.controllers', [])
 
   .controller('DisasterDetailCtrl', function($scope, $stateParams, $http, Loading, $state, Coordinates) {
 
-
-
-
     $scope.coordData = Coordinates;
     console.log('I am inside disaster detail controller');
     Loading.show();
@@ -106,7 +103,7 @@ angular.module('starter.controllers', [])
       console.log(Coordinates);
 
       Loading.hide();
-      console.log('Success', $scope.disaster);
+      //console.log('Success', $scope.disaster);
     }, function(err) {
       console.error('ERR', err);
       // err.status will contain the status code
@@ -190,13 +187,17 @@ $http.get('http://api.rwlabs.org/v1/training?limit=40').then(function(resp) {
     })
   })
 
-  .controller('MapController', function($scope, $state, $ionicLoading, $compile, $ionicHistory, Coordinates, Loading) {
+  .controller('MapController', function($scope, $state, $ionicLoading, $compile, $ionicHistory, Coordinates) {
+    console.log("Just entered MapController");
+    //$ionicHistory.clearCache().then(function(){ $state.go('tab.map')});
 
-    $ionicHistory.clearCache().then(function(){ $state.go('tab.map')});
+    //$scope.initialize = function() {
 
-    $scope.initialize = function() {
 
-      Loading.show();
+      //Here starts old map ******************************************
+
+    $scope.$on('$ionicView.afterEnter', function(){
+      console.log("I have entered the view on afterEnter");
 
       $scope.coordData = Coordinates;
       console.log('My coords in map controller');
@@ -206,6 +207,7 @@ $http.get('http://api.rwlabs.org/v1/training?limit=40').then(function(resp) {
       console.log($scope.coordData.long);
 
       console.log("Inside Map controller");
+      //var myLatlng = new google.maps.LatLng($scope.coordData.lat, $scope.coordData.long);
       var myLatlng = new google.maps.LatLng($scope.coordData.lat, $scope.coordData.long);
 
       var mapOptions = {
@@ -231,8 +233,14 @@ $http.get('http://api.rwlabs.org/v1/training?limit=40').then(function(resp) {
       });
 
       $scope.map = map;
-      Loading.hide();
-    }
+
+    });
+
+
+    //here ends old map *******************************************
+
+
+    //}
     //google.maps.event.addDomListener(window, 'load', initialize);
 
   })
