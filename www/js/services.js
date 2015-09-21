@@ -24,7 +24,7 @@ angular.module('starter.services', [])
   })
 
 
-.factory('Coordinates', function() {
+.factory('Coordinates', function($rootScope) {
 
     coordinates = {};
     coordinates.lat = '';

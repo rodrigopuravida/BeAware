@@ -15,14 +15,14 @@ angular.module('starter.controllers', [])
 
     console.log('I am in reports controller');
 
-    Loading.show();
+    //Loading.show();
 
     $http.get('http://api.rwlabs.org/v1/reports?limit=30').then(function(resp) {
 
 
       // For JSON responses, resp.data contains the result
       $scope.reports = resp.data.data;
-      Loading.hide();
+      //Loading.hide();
 
       //console.log('Success', $scope.reports);
     }, function(err) {
@@ -80,7 +80,11 @@ angular.module('starter.controllers', [])
     })
   })
 
-  .controller('DisasterDetailCtrl', function($scope, $stateParams, $http, Loading, Coordinates) {
+  .controller('DisasterDetailCtrl', function($scope, $stateParams, $http, Loading, $state, Coordinates) {
+
+
+
+
     $scope.coordData = Coordinates;
     console.log('I am inside disaster detail controller');
     Loading.show();
@@ -93,6 +97,7 @@ angular.module('starter.controllers', [])
 
       //this console shows lat - [1] - long i [0]
       console.log(resp.data.data[0].fields.primary_country.location[1]);
+      $scope.coordData.country = resp.data.data[0].fields.primary_country.name;
       $scope.coordData.lat = resp.data.data[0].fields.primary_country.location[1];
       $scope.coordData.long = resp.data.data[0].fields.primary_country.location[0];
       console.log('At disasater detail setting coords');
@@ -185,8 +190,13 @@ $http.get('http://api.rwlabs.org/v1/training?limit=40').then(function(resp) {
     })
   })
 
-  .controller('MapController', function($scope, $ionicLoading, $compile, Coordinates) {
+  .controller('MapController', function($scope, $state, $ionicLoading, $compile, $ionicHistory, Coordinates, Loading) {
+
+    $ionicHistory.clearCache().then(function(){ $state.go('tab.map')});
+
     $scope.initialize = function() {
+
+      Loading.show();
 
       $scope.coordData = Coordinates;
       console.log('My coords in map controller');
@@ -221,11 +231,21 @@ $http.get('http://api.rwlabs.org/v1/training?limit=40').then(function(resp) {
       });
 
       $scope.map = map;
+      Loading.hide();
     }
     //google.maps.event.addDomListener(window, 'load', initialize);
 
-
   })
+
+  .controller("MyController", ["$scope", "$firebaseArray",
+    function($scope, $firebaseArray, Coordinates) {
+      var ref = new Firebase("https://BEAWARE.firebaseIO.com/");
+      $scope.dataDisasterDetail = Coordinates;
+      $scope.dataOut = $firebaseArray(ref);
+
+      $scope.messages.$add({ from: name, body: $scope.msg });
+    }
+  ])
 
 
 
