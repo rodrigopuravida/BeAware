@@ -25,7 +25,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 
 .config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
 
-    //$ionicConfigProvider.views.maxCache(5);
+    //$ionicConfigProvider.views.maxCache(0);
     //$ionicConfigProvider.views.forwardCache(false);
 
   // Ionic uses AngularUI Router which uses the concept of states
@@ -153,10 +153,6 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
         }
       }
     })
-
-
-
-
 
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/tab/reports');

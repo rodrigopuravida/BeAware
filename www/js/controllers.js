@@ -1,7 +1,7 @@
 angular.module('starter.controllers', [])
 
 
-.controller('DashCtrl', function($scope) {})
+  .controller('DashCtrl', function($scope) {})
 
   .controller('DonationsCtrl', function($scope) {
     //donation func here
@@ -32,7 +32,7 @@ angular.module('starter.controllers', [])
 
     //$scope.reports = Reports.all();
 
-})
+  })
 
   .controller('ReportDetailCtrl', function($scope, $stateParams, $http, Loading) {
 
@@ -55,7 +55,7 @@ angular.module('starter.controllers', [])
 
   })
 
-.controller('DisastersCtrl', function($scope, $http, $rootScope, Loading) {
+  .controller('DisastersCtrl', function($scope, $http, $rootScope, Loading) {
 
     console.log('I am in disasters controller');
     Loading.show();
@@ -69,12 +69,12 @@ angular.module('starter.controllers', [])
 
     $http.get('http://api.rwlabs.org/v1/disasters?limit=30&sort[]=date:desc&sort[]=name:asc').then(function(resp) {
 
-    // For JSON responses, resp.data contains the result
-    $scope.disasters = resp.data.data;
+      // For JSON responses, resp.data contains the result
+      $scope.disasters = resp.data.data;
       Loading.hide();
 
-    //console.log('Success', $scope.disasters);
-  }, function(err) {
+      //console.log('Success', $scope.disasters);
+    }, function(err) {
       console.error('ERR', err);
       // err.status will contain the status code
     })
@@ -154,21 +154,21 @@ angular.module('starter.controllers', [])
 
 
 
-      .controller('TrainingCtrl', function($scope, $http, $rootScope, Loading) {
+  .controller('TrainingCtrl', function($scope, $http, $rootScope, Loading) {
     console.log('I am in training controller');
     Loading.show();
 
-$http.get('http://api.rwlabs.org/v1/training?limit=30&sort[]=date:desc&sort[]=title:asc').then(function(resp) {
+    $http.get('http://api.rwlabs.org/v1/training?limit=30&sort[]=date:desc&sort[]=title:asc').then(function(resp) {
 
-  // For JSON responses, resp.data contains the result
-  $scope.trainings = resp.data.data;
-  Loading.hide();
-  //console.log('Success', $scope.disasters);
-}, function(err) {
-  console.error('ERR', err);
-  // err.status will contain the status code
-})
-})
+      // For JSON responses, resp.data contains the result
+      $scope.trainings = resp.data.data;
+      Loading.hide();
+      //console.log('Success', $scope.disasters);
+    }, function(err) {
+      console.error('ERR', err);
+      // err.status will contain the status code
+    })
+  })
 
   .controller('TrainingDetailCtrl', function($scope, $stateParams, $http, Loading) {
     console.log('I am inside training detail controller');
@@ -194,7 +194,7 @@ $http.get('http://api.rwlabs.org/v1/training?limit=30&sort[]=date:desc&sort[]=ti
     //$scope.initialize = function() {
 
 
-      //Here starts old map ******************************************
+    //Here starts old map ******************************************
 
     $scope.$on('$ionicView.afterEnter', function(){
       console.log("I have entered the view on afterEnter");
@@ -244,22 +244,6 @@ $http.get('http://api.rwlabs.org/v1/training?limit=30&sort[]=date:desc&sort[]=ti
     //google.maps.event.addDomListener(window, 'load', initialize);
 
   })
-
-  .controller("MyController", ["$scope", "$firebaseArray",
-    function($scope, $firebaseArray, Coordinates) {
-      var ref = new Firebase("https://BEAWARE.firebaseIO.com/");
-      $scope.dataDisasterDetail = Coordinates;
-      $scope.dataOut = $firebaseArray(ref);
-
-      $scope.messages.$add({ from: name, body: $scope.msg });
-    }
-  ])
-
-
-
-
-
-
 
 
 
