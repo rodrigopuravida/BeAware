@@ -17,7 +17,7 @@ angular.module('starter.controllers', [])
 
     Loading.show();
 
-    $http.get('http://api.rwlabs.org/v1/reports?limit=30').then(function(resp) {
+    $http.get('http://api.rwlabs.org/v1/reports?limit=30&sort[]=date:desc&sort[]=title:asc').then(function(resp) {
 
 
       // For JSON responses, resp.data contains the result
@@ -67,7 +67,7 @@ angular.module('starter.controllers', [])
     //  }
     //})
 
-    $http.get('http://api.rwlabs.org/v1/disasters?limit=30').then(function(resp) {
+    $http.get('http://api.rwlabs.org/v1/disasters?limit=30&sort[]=date:desc&sort[]=name:asc').then(function(resp) {
 
     // For JSON responses, resp.data contains the result
     $scope.disasters = resp.data.data;
@@ -123,7 +123,7 @@ angular.module('starter.controllers', [])
     //  }
     //})
 
-    $http.get('http://api.rwlabs.org/v1/jobs?limit=40').then(function(resp) {
+    $http.get('http://api.rwlabs.org/v1/jobs?limit=30&sort[]=date:desc&sort[]=title:asc').then(function(resp) {
 
       // For JSON responses, resp.data contains the result
       $scope.jobs = resp.data.data;
@@ -158,7 +158,7 @@ angular.module('starter.controllers', [])
     console.log('I am in training controller');
     Loading.show();
 
-$http.get('http://api.rwlabs.org/v1/training?limit=40').then(function(resp) {
+$http.get('http://api.rwlabs.org/v1/training?limit=30&sort[]=date:desc&sort[]=title:asc').then(function(resp) {
 
   // For JSON responses, resp.data contains the result
   $scope.trainings = resp.data.data;
